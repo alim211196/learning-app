@@ -5,11 +5,9 @@ import {
 } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import PublicRoute from "./PublicRoute";
-import Login from "../pages/Login";
-import AdminDashboard from "../pages/AdminDashboard";
-import NotFound from "../pages/NotFound";
+import SignIn from "../components/signIn";
+import Dashboard from "../components/dashboard";
 import AdminLayout from "../layouts/AdminLayout";
-
 // AdminLayout is your layout with the MiniDrawer
 
 const router = createBrowserRouter([
@@ -21,21 +19,21 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <PublicRoute>
-        <Login />
+        <SignIn />
       </PublicRoute>
     ),
   },
   {
-    path: "/admin",
+    path: "/dashboard",
     element: (
       <ProtectedRoute>
-        <AdminLayout /> {/* MiniDrawer layout persists */}
+        <AdminLayout />
       </ProtectedRoute>
     ),
     children: [
       {
         path: "",
-        element: <AdminDashboard />, // Default route when no specific path is selected
+        element: <Dashboard />,
       },
     ],
   },
